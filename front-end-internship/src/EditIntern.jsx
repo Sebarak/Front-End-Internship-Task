@@ -11,17 +11,30 @@ const EditIntern = () => {
     }, [id]);
 
     return (
-        <div>
-            <NavLink to="/">Back to list </NavLink>
-            <form>
-                <label>Name</label>
-                <input type="text" name="name" />              
-                <label>Email</label>
-                <input type="text" name="email" />
-                
+        <main>
+            <div className='container return'>
+                <NavLink to="/" className='return_button'>Back to list </NavLink>
+            </div>
+            <form className='container form'>
+                <section className='form_user_values'>
+                    <label className='user_name'>Name *</label>
+                    <input type="text" name="name" className='user_value'/>
+                    <label className='user_name'>Email *</label>
+                    <input type="text" name="email" className='user_value'/>
+                </section>
+                <section className='form_internship_date'>
+                    <div className='internship_date'>
+                        <label>Internship start *</label>
+                        <input type="date" className='user_date start'/>
+                    </div>
+                    <div className='internship_date'>
+                        <label>Internship end *</label>
+                        <input type="date" className='user_date end'/>
+                    </div>
+                </section>
                 <input type="submit" value="Submit" />
             </form>
-        </div>
+        </main>
     );
 };
 

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import  Vector  from './vector.svg';
 
 const InternList = () => {
 
@@ -15,9 +16,14 @@ const InternList = () => {
     }, []);
 
     return (
-        <div>
-            {interns.map(u => (<div key={u.id}>{u.name} <NavLink to={`/interns/${u.id}`}>Edit</NavLink></div>))}
-        </div>
+            <main className='container participants'>
+                <h1 className='list_header'>Participants</h1>
+                <ul className='list'>
+                    {interns.map(u => (
+                        <li key={u.id} className='list_element'>{u.name} <NavLink to={`/interns/${u.id}`} className='list_element_edit'><img
+                            src={Vector} alt="Vector"/>Edit</NavLink></li>))}
+                </ul>
+            </main>
     );
 };
 
