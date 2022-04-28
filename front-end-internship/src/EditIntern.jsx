@@ -1,13 +1,15 @@
-import React, { useEffect } from 'react';
+import React, {useEffect, useState} from 'react';
 import { useParams } from 'react-router';
-import { NavLink } from 'react-router-dom';
+import {NavLink} from 'react-router-dom';
 
 const EditIntern = () => {
     const { id } = useParams();
+    const [users,setUser] = useState({})
+
 
     useEffect(() => {
         //TODO: get intern from REST api http://localhost:3001/interns/:id
-        console.log(`I want to get intern with id: ${id}!`)
+        console.log(`I want to get intern with id: ${id}!`);
     }, [id]);
 
     return (

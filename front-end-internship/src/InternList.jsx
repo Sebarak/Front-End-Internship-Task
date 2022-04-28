@@ -20,7 +20,7 @@ const InternList = () => {
                 <h1 className='list_header'>Participants</h1>
                 <ul className='list'>
                     {interns.map(u => (
-                        <li key={u.id} className='list_element'>{u.name} <NavLink to={`/interns/${u.id}`} className='list_element_edit'><img
+                        <li key={u.id} className='list_element'>{u.name} <NavLink to={{pathname:`/interns/${u.id}`,state:{user:`u`}}} className='list_element_edit'><img
                             src={Vector} alt="Vector"/>Edit</NavLink></li>))}
                 </ul>
             </main>
