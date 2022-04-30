@@ -81,23 +81,25 @@
 
 .form_user_values{
   text-align: left;
+  width: 100%;
 }
 
 .user_value{
-  width: 100%;
+  width: calc(100% - 10px);
 }
 
 .form_internship_date{
   display: flex;
   text-align: left;
+  width: 100%;
 }
 
 .internship_date{
-
+width: 100%;
 }
 
 .user_date{
-  width: calc(100% - 5px);
+  width: calc(100% - 10px);
 }
 
 .start{
