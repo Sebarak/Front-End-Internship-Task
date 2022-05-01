@@ -63,15 +63,15 @@ const EditIntern = () => {
                         <label>Internship start *</label>
                         <input type="text" placeholder={user.internshipStart} value={internshipS}
                                onChange={e => setStart(e.currentTarget.value)} onFocus={e => (e.target.type = "date")}
-                               onBlur={e => (e.target.type = "text")} min='1990-01-01' max="2030-12-31"
+                               onBlur={e => (e.target.type = "text")} min='01-01-2010' max="12-31-2030"
                                className='user_date start'/>
                     </div>
                     <div className='internship_date'>
                         <label>Internship end *</label>
                         <input type="text" placeholder={user.internshipEnd} value={internshipE}
                                onChange={e => setEnd(e.currentTarget.value)} onFocus={e => (e.target.type = "date")}
-                               onBlur={e => (e.target.type = "text")} min='01-01-2000' max="12-31-2030"
-                               className='user_date end'/>
+                               onBlur={e => (e.target.type = "text")} min='01-01-2010' max="12-31-2030"
+                               className='user_date end '/>
                     </div>
                 </section>
                 <input type="submit" value="Submit"/>
