@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {useParams, useNavigate} from 'react-router';
 import {NavLink} from 'react-router-dom';
+import Incorrect from './incorrect.svg';
 
 const EditIntern = () => {
     const {id} = useParams();
@@ -10,6 +11,10 @@ const EditIntern = () => {
     const [name, setName] = useState('')
     const [email, setEmail] = useState('');
     const navigate = useNavigate();
+    const [nameValidate, setNameValidate] = useState(false);
+    const [emailValidate, setEmailValidate] = useState(false);
+    const [internStartValidate, setInternSValidate] = useState(false);
+    const [internEndValidate, setInternEValidate] = useState(false);
 
     useEffect(() => {
         //TODO: get intern from REST api http://localhost:3001/interns/:id
@@ -39,7 +44,14 @@ const EditIntern = () => {
             setEnd('');
             navigate('/');
         }
-
+        if (name === "") setNameValidate(true);
+        if (email === '') setEmailValidate(true);
+        if (internshipS === '') setInternSValidate(true);
+        if (internshipE === '') setInternEValidate(true);
+        if ((internshipS !== '' && internshipE !== '') && internshipS >= internshipE) {
+            setInternSValidate(true);
+            setInternEValidate(true);
+        }
     }
 
     return (
@@ -52,26 +64,62 @@ const EditIntern = () => {
             }}>
                 <section className='form_user_values'>
                     <label className='user_name'>Name *</label>
-                    <input type="text" name="name" placeholder={user.name} value={name}
-                           onChange={e => setName(e.currentTarget.value)} className='user_value'/>
+                    <input type="text" id='name' name="name" placeholder={user.name} value={name}
+                           onChange={e => setName(e.currentTarget.value)}
+                           onFocus={() => setNameValidate(false)}
+                           className={nameValidate ? 'user_value incorrect' : 'user_value'}/>
+                    {nameValidate && (
+                        <>
+                            <label htmlFor="name" className='validate_info'>This field is required</label>
+                            <img src={Incorrect} alt="incorrect mark" className='internship_end'/>
+                        </>
+                    )}
                     <label className='user_name'>Email *</label>
-                    <input type="email" name="email" placeholder={user.email} value={email}
-                           onChange={e => setEmail(e.currentTarget.value)} className='user_value'/>
+                    <input type="email" id='email' name="email" placeholder={user.email} value={email}
+                           onChange={e => setEmail(e.currentTarget.value)}
+                           onFocus={() => setEmailValidate(false)}
+                           className={emailValidate ? 'user_value incorrect' : 'user_value'}/>
+                    {emailValidate && (
+                        <>
+                            <label htmlFor="email" className='validate_info'>This field is required</label>
+                            <img src={Incorrect} alt="incorrect mark" className='internship_end'/>
+                        </>
+                    )}
                 </section>
                 <section className='form_internship_date'>
                     <div className='internship_date'>
                         <label>Internship start *</label>
-                        <input type="text" placeholder={user.internshipStart} value={internshipS}
-                               onChange={e => setStart(e.currentTarget.value)} onFocus={e => (e.target.type = "date")}
+                        <input type="text" id='internship_start' placeholder={user.internshipStart} value={internshipS}
+                               onChange={e => setStart(e.currentTarget.value)} onFocus={e => {
+                            setInternSValidate(false);
+                            e.target.type = "date";
+                        }}
                                onBlur={e => (e.target.type = "text")} min='01-01-2010' max="12-31-2030"
-                               className='user_date start'/>
+                               className={internStartValidate ? 'user_date start incorrect' : 'user_date start'}/>
+                        {internStartValidate && (
+                            <>
+                                <label htmlFor="internship_start" className='validate_info'>This date is not
+                                    correct</label>
+                                <img src={Incorrect} alt="incorrect mark" className='internship_end'/>
+                            </>
+                        )}
                     </div>
                     <div className='internship_date'>
                         <label>Internship end *</label>
-                        <input type="text" placeholder={user.internshipEnd} value={internshipE}
-                               onChange={e => setEnd(e.currentTarget.value)} onFocus={e => (e.target.type = "date")}
+                        <input type="text" id='internship_end' placeholder={user.internshipEnd} value={internshipE}
+                               onChange={e => setEnd(e.currentTarget.value)} onFocus={e => {
+                            setInternEValidate(false);
+                            e.target.type = "date";
+                        }}
                                onBlur={e => (e.target.type = "text")} min='01-01-2010' max="12-31-2030"
-                               className='user_date end '/>
+                               className={internEndValidate ? 'user_date end incorrect' : 'user_date end'}/>
+                        {internEndValidate && (
+                            <>
+                                <label htmlFor="internship_end" className='validate_info'>This date is not
+                                    correct</label>
+                                <img src={Incorrect} alt="incorrect mark" className='internship_end'/>
+                            </>
+                        )}
                     </div>
                 </section>
                 <input type="submit" value="Submit"/>

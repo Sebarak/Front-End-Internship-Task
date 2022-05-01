@@ -115,19 +115,3 @@ width: 100%;
   border: 1px solid #A3270C;
   position: relative;
 }
-
-.incorrect::before{
-  content:'!';
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  border:1px solid #A3270C;
-  color: #A3270C;
-  position: absolute;
-  right: 5%;
-  z-index: 2;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
