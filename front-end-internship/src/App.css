@@ -1,3 +1,8 @@
+:root{
+  --mobile: 767px;
+  --tablet: 1023px;
+}
+
 .App {
   text-align: center;
   height: 100%;
@@ -7,6 +12,7 @@
   position: absolute;
   left: 20px;
   top: 20px;
+  transition: all .2s ease-in-out;
 }
 
 .container{
@@ -14,13 +20,18 @@
   flex-direction: column;
   align-items: flex-start;
   width: 500px;
-  margin: 60px auto;
+  margin: 50px auto;
+  transition: all .2s ease-in-out;
 }
 
 .participants,
 .form {
-  padding: 40px 80px;
+  padding: 30px 80px 20px 80px;
   background: #F7F7F7;
+}
+.form{
+  padding-bottom: 10px;
+  margin-bottom: 0;
 }
 
 .return{
@@ -31,15 +42,38 @@
 .return_button{
   text-decoration: none;
   width: fit-content;
+  color: #222222;
+  font-family: 'Roboto',sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  display: flex;
+  transition: filter .3s ease-in-out, color .3s ease-in-out;
 }
 
-.list_header{
+.return_button:hover{
+  color: #555555;
+  filter: invert(35%) sepia(1%) saturate(3%) hue-rotate(117deg) brightness(91%) contrast(91%);
+}
+
+.return_button::before{
+  content: url("./return.svg");
+  color: #222222;
+  width: fit-content;
+  padding-right: 5px;
+
+  display: flex;
+  align-items: center;
+}
+
+.list_header,
+.edit_header{
   font-family: 'Roboto',sans-serif;
   font-style: normal;
   font-weight: 500;
   font-size: 40px;
-  line-height: 47px;
   color: #222222;
+  margin-top: 0;
 }
 
 .list{
@@ -52,6 +86,10 @@
 input{
   box-sizing: border-box;
   padding: 12px 16px;
+  font-size: 18px;
+  margin-bottom: 30px;
+  margin-top: 5px;
+  outline: none;
 }
 
 .list_element{
@@ -65,10 +103,18 @@ input{
   color: #222222;
   font-size: 18px;
   line-height: 24px;
+  border: 2px solid #EDEDED;
+  cursor: default;
 }
 
 .list_element:nth-of-type(2n){
   background-color: #F2F2F2;
+  border: 2px solid #F2F2F2;
+}
+
+.list_element:hover{
+  border: 2px solid #222;
+  background-color: #F7F7F7;
 }
 
 .list_element_edit{
@@ -82,11 +128,28 @@ input{
   align-items: center;
   justify-content: space-between;
   text-decoration: none;
+  transition: color .2s ease-in-out;
+}
+
+.list_element_edit:hover{
+  color: #555;
+}
+
+.list_element_edit_vector{
+  transition: filter .2s ease-in-out;
+}
+
+.list_element_edit:hover > .list_element_edit_vector{
+  filter: invert(35%) sepia(1%) saturate(3%) hue-rotate(117deg) brightness(91%) contrast(91%);
 }
 
 .form_user_values{
   text-align: left;
   width: 100%;
+}
+
+.form_user_holder{
+  position: relative;
 }
 
 .user_value{
@@ -100,18 +163,214 @@ input{
 }
 
 .internship_date{
-width: 100%;
+  width: 100%;
+  position: relative;
+}
+
+.internship_date::after{
+  content: '';
+  position: absolute;
+  height: 50px;
+  border-left: 1px solid #767676;
+  top: 30px;
+  right: 55px;
+}
+.first{
+  padding-right: 10px;
+}
+.second{
+  padding-left: 10px;
+}
+
+.first::after{
+  content: '';
+  right: 65px;
+}
+
+.title_section{
+  font-family: 'Roboto',sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 24px;
+  color: #222222;
 }
 
 .user_date{
   width: 100%;
+  outline: none;
+  height: 52px;
+}
+
+.user_date::-webkit-calendar-picker-indicator{
+  background: url("./calendar.svg") no-repeat center;
+  cursor: pointer;
+}
+
+.user_date:focus{
+  font-size: 18px;
 }
 
 .start{
-  width: calc(100% - 10px);
+  width: 100%;
 }
 
 .incorrect{
-  border: 1px solid #A3270C;
+  border: 2px solid #A3270C;
+  border-radius: 2px;
   position: relative;
+  border-image: initial;
+}
+
+.validate_info_holder{
+  width: calc(100% - 10px);
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 5px;
+  position: absolute;
+  top: 65px;
+}
+
+.validate_info{
+  font-family: 'Roboto',sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: #A3270C;
+  margin: 0;
+}
+
+.internship_mark{
+  position: absolute;
+  right: 20px;
+  top: -23px;
+}
+
+.internship_mark_date{
+  right: 75px;
+  top: -20px;
+}
+
+.calendar{
+  position: absolute;
+  top: 44px;
+  right: 19px;
+  cursor: pointer;
+}
+
+.first_calendar{
+  right: 29px;
+}
+
+.submit{
+  width: 224px;
+  height: 48px;
+  background: #222222;
+  margin-bottom: 10px;
+  border: none;
+  cursor: pointer;
+  font-family: 'Roboto',sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  color: #FFFFFF;
+  border-radius: 2px;
+  transition: transform .5s cubic-bezier(1,-0.21, 0, 1.19);
+}
+
+.submit:hover{
+  transform: scale(1.05);
+}
+
+.datepicker_input {
+  opacity: 0;
+  position: absolute;
+  right: 28px;
+  top: 45px;
+  width: 22px;
+  height: 22px;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+.second_datepicker{
+  right: 18px;
+}
+
+.datepicker_input::-webkit-calendar-picker-indicator {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 767px){
+  body{
+    background-color: #F7F7F7;
+  }
+
+  .container{
+    width: calc(100vw - 20px);
+    padding: 10px;
+    margin-bottom: 0;
+  }
+
+  .logo{
+    width: 40px;
+    left: 10px;
+    top: 10px;
+  }
+
+  .form{
+    margin-top: 0;
+    padding-top: 5px;
+  }
+
+  .return{
+    padding: 20px 10px 5px 10px;
+  }
+
+  .edit_header{
+    margin: 0;
+  }
+
+  .form_internship_date{
+    flex-direction: column;
+  }
+
+  .first,
+  .second{
+    padding: 0;
+  }
+
+  .first::after{
+    content: '';
+    right: 55px;
+  }
+
+  .first_calendar{
+    right: 19px;
+  }
+
+  .datepicker_input{
+    right: 18px;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1023px){
+  body{
+    background-color: #F7F7F7;
+  }
+
+  .return{
+    width: 500px;
+  }
 }

@@ -21,7 +21,7 @@ const InternList = () => {
                 <ul className='list'>
                     {interns.map(u => (
                         <li key={u.id} className='list_element'>{u.name} <NavLink to={`/interns/${u.id}`} className='list_element_edit'><img
-                            src={Vector} alt="Vector"/>Edit</NavLink></li>))}
+                            src={Vector} className='list_element_edit_vector' alt="Vector"/>Edit</NavLink></li>))}
                 </ul>
             </main>
     );
